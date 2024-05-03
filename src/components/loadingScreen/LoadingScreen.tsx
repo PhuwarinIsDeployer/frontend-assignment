@@ -1,4 +1,4 @@
-import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const LoadingScreen = () => (
   <div className="flex justify-center items-center bg-black h-full min-h-screen">

@@ -1,13 +1,18 @@
 "use client";
-import axios from "axios";
+import CardDepartment from "@/components/cardDepartment/CardDepartment";
+import LoadingScreen from "@/components/loadingScreen/LoadingScreen";
+import { useGroupUsersByDepartment } from "@/hooks/useGroupUsersByDepartment/useGroupUsersByDepartment";
+import { getSummaryDepartmentService } from "@/services/summaryDepartment/summaryDepartment";
+import { fetchDepartmentSuccess } from "@/store/action/departmentActions";
+import { RootState } from "@/store/store";
+import { User } from "@/types/summaryDepartment/summaryDepartmentType";
 import React, { useEffect, useState } from "react";
-import { User } from "../types/user/user";
-import { useGroupUsersByDepartment } from "../hooks/useGroupUsersByDepartment/useGroupUsersByDepartment";
-import CardDepartment from "../components/cardDepartment/CardDepartment";
-import LoadingScreen from "../components/loadingScreen/LoadingScreen";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SummaryDepartment() {
-  const [users, setUsers] = useState<User[]>([]);
+  const users = useSelector((state: RootState) => state.department.users);
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User[] | null>(null);
@@ -25,18 +30,26 @@ export default function SummaryDepartment() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchUsers();
+    if (!users.length) {
+      setIsLoading(true);
+      fetchUsers();
+    }
   }, []);
+
+  useEffect(() => {
+    console.log("Redux :", users);
+  }, [users]);
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("https://dummyjson.com/users?limit=100");
-      setUsers(response.data.users);
+      const response = await getSummaryDepartmentService();
+
+      dispatch(
+        fetchDepartmentSuccess(response.users, response.total, response.skip)
+      );
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setIsLoading(false);
     }
   };
 

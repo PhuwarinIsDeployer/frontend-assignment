@@ -1,4 +1,4 @@
-import { User } from "@/app/types/user/user";
+import { User } from "@/types/summaryDepartment/summaryDepartmentType";
 
 export interface DepartmentSummary {
   [departmentName: string]: {

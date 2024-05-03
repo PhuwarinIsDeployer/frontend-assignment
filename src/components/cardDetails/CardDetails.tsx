@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardDetailsType } from "./type";
-import placeholderImage from "../../../../public/assets/images/placeholder.png";
+import placeholderImage from "../../../public/assets/images/placeholder.png";
 
 const CardDetails: React.FC<CardDetailsType> = ({ user }) => {
   return (

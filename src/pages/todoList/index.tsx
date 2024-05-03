@@ -1,8 +1,8 @@
 "use client";
+import TodoColumn from "@/components/todoColumn/TodoColumn";
+import { todoListItems } from "@/mockData/fruitAndVegetable";
+import { TodoListItemsType } from "@/types/todoListItem/todoListItem";
 import React, { useState } from "react";
-import { todoListItems } from "../mockData/fruitAndVegetable";
-import { TodoListItemsType } from "../types/todoListItem/todoListItem";
-import TodoColumn from "../components/todoColumn/TodoColumn";
 
 export default function AutoDeleteTodoList() {
   const [todoItems, setTodoItems] =

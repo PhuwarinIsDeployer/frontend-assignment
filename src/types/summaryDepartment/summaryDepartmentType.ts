@@ -1,4 +1,4 @@
-export type Response = {
+export type SummaryDepartmentResponse = {
   data: UsersDataResponse;
 };
 

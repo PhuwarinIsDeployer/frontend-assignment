@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { User } from "@/app/types/user/user";
 import { DepartmentSummary } from "./type";
+import { User } from "@/types/summaryDepartment/summaryDepartmentType";
 
 export function useGroupUsersByDepartment(users: User[]): DepartmentSummary {
   return useMemo(() => {
