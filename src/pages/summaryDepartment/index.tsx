@@ -36,10 +36,6 @@ export default function SummaryDepartment() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("Redux :", users);
-  }, [users]);
-
   const fetchUsers = async () => {
     try {
       const response = await getSummaryDepartmentService();
